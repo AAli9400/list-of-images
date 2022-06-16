@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.listofimages.data.model.ImageWithTitle
 import com.example.listofimages.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var mBinding: FragmentHomeBinding
     private lateinit var mAdapter: ImagesListAdapter
