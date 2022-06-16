@@ -18,43 +18,40 @@ class FullScreenFragment : Fragment() {
 
     private val args: FullScreenFragmentArgs by navArgs()
 
+    private var mIsInFullScreen = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         mBinding = FragmentFullScreenBinding.inflate(inflater, container, false)
+            .apply {
+                url = args.url
+            }
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mBinding.apply {
-            url = args.url
+        mBinding.ivImage.setOnClickListener {
+            when {
+                mIsInFullScreen -> exitFullscreen()
+                else -> enterFullscreen()
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
-       /* activity?.let {
-            it.window?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-            it.actionBar?.hide()
-        }*/
-
         enterFullscreen()
     }
 
     override fun onPause() {
         super.onPause()
-        /*activity?.let {
-            it.window?.clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-            it.actionBar?.show()
-        }*/
-
         exitFullscreen()
     }
-
 
     private fun enterFullscreen() {
         WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
@@ -63,6 +60,8 @@ class FullScreenFragment : Fragment() {
             controller.systemBarsBehavior =
                 WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
+
+        mIsInFullScreen = true
     }
 
 
@@ -72,5 +71,7 @@ class FullScreenFragment : Fragment() {
             requireActivity().window,
             mBinding.root
         ).show(WindowInsetsCompat.Type.systemBars())
+
+        mIsInFullScreen = false
     }
 }
