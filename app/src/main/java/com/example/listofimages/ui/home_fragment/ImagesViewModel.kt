@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ImagesViewModel @Inject constructor(private val repository: NetworkRepository) : ViewModel() {
     val images = Pager(
-        PagingConfig(pageSize = 1)
+        PagingConfig(pageSize = 10)
     ) {
         ImagesPagingDataSource(repository)
     }.flow.cachedIn(viewModelScope)
