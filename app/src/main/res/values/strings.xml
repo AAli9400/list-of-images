@@ -1,8 +1,4 @@
 <resources>
     <string name="app_name" translatable="false">List Of Images</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="zoom">Expand</string>
-    <string name="change_view">change view</string>
-    <string name="grid_view">Grid View</string>
-    <string name="list_view">List View</string>
+    <string name="images_with_title" translatable="false">Images With Title</string>
 </resources>
