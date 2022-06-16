@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="zoom">تكبير</string>
+    <string name="change_view">تغيير العرض</string>
+    <string name="grid_view">عرض شبكي</string>
+    <string name="list_view">عرض القائمة</string>
+</resources>
