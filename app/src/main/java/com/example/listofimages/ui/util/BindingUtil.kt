@@ -2,27 +2,24 @@ package com.example.listofimages.ui.util
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
+import coil.load
+import coil.request.CachePolicy
 import com.example.listofimages.R
 
 @BindingAdapter("imageUrl")
-fun setImage(image: ImageView, url: String?) {
+fun setImage(imageView: ImageView, url: String?) {
     if (!url.isNullOrEmpty()) {
-        Glide.with(image.context)
-            .load(url)
-            .transition(withCrossFade())
-            .error(R.drawable.ic_baseline_broken_image_24)
-            .skipMemoryCache(true)
-            .diskCacheStrategy( DiskCacheStrategy.DATA)
-            .into(image)
+        imageView.load(url) {
+            crossfade(true)
+            error(R.drawable.ic_baseline_broken_image_24)
+            memoryCachePolicy(CachePolicy.DISABLED)
+            diskCachePolicy(CachePolicy.ENABLED)
+        }
     } else {
-        Glide.with(image.context)
-            .load(R.drawable.ic_baseline_broken_image_24)
-            .skipMemoryCache(true)
-            .diskCacheStrategy( DiskCacheStrategy.NONE)
-            .transition(withCrossFade())
-            .into(image)
+        imageView.load(R.drawable.ic_baseline_broken_image_24) {
+            crossfade(true)
+            memoryCachePolicy(CachePolicy.DISABLED)
+            diskCachePolicy(CachePolicy.DISABLED)
+        }
     }
 }

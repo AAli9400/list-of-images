@@ -2,8 +2,8 @@ package com.example.listofimages.data.api.constants
 
 sealed class ApiConstants {
     object Urls {
-        const val BASE_URL = "http://my-json-server.typicode.com/AAli9400/list-of-images/"
-        const val PHOTO_URL = "images"
+        const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+        const val PHOTO_URL = "photos"
     }
 
     object Parameters {
